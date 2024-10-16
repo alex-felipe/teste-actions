@@ -1,28 +1,27 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+# Fluxo de trabalho simples para implantar conteúdo estático no GitHub Pages
+name: Implantar conteúdo estático no Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Permite que você execute este fluxo de trabalho manualmente a partir da aba Ações
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# Define as permissões do GITHUB_TOKEN para permitir a implantação no GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Permite apenas uma implantação concorrente, ignorando execuções enfileiradas entre a execução em andamento e a mais recente enfileirada.
+# No entanto, NÃO cancele execuções em andamento, pois queremos permitir que essas implantações de produção sejam concluídas.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  # Job único de implantação, já que estamos apenas implantando
   deploy:
     environment:
       name: github-pages
@@ -31,13 +30,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
+      - name: Configurar Pages
         uses: actions/configure-pages@v5
-      - name: Upload artifact
+      - name: Fazer upload do artefato
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
+          # Fazer upload de todo o repositório
           path: '.'
-      - name: Deploy to GitHub Pages
+      - name: Implantar no GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
